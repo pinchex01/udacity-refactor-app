@@ -21,13 +21,13 @@ script:
   - docker build -t udagram-frontend ./udagram-frontend
     #tagging
   - docker tag udagram-reverseproxy petemuema/udagram-reverseproxy:latest
-  - docker tag backend-feed petemuema/udagram-api-feed:latest
-  - docker tag backend-user petemuema/udagram-api-user:latest
+  - docker tag backend-feed petemuema/udagram-api-feed:v1a
+  - docker tag backend-user petemuema/udagram-api-user:v1a
   - docker tag udagram-frontend petemuema/udagram-frontend:latest
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push petemuema/udagram-reverseproxy
-  - docker push petemuema/backend-feed
-  - docker push petemuema/backend-user
+  - docker push petemuema/backend-feed:v1a
+  - docker push petemuema/backend-user:v1a
   - docker push petemuema/udagram-frontend
